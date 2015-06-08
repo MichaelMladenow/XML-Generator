@@ -1,0 +1,9 @@
+c:\users\stamat\documents\visual studio 2013\Projects\SOC-Generator\SOC-Generator\bin\Debug\SOC-Generator.exe.config
+c:\users\stamat\documents\visual studio 2013\Projects\SOC-Generator\SOC-Generator\bin\Debug\SOC-Generator.exe
+c:\users\stamat\documents\visual studio 2013\Projects\SOC-Generator\SOC-Generator\bin\Debug\SOC-Generator.pdb
+c:\users\stamat\documents\visual studio 2013\Projects\SOC-Generator\SOC-Generator\obj\Debug\SOC-Generator.csprojResolveAssemblyReference.cache
+c:\users\stamat\documents\visual studio 2013\Projects\SOC-Generator\SOC-Generator\obj\Debug\SOC_Generator.Generator.resources
+c:\users\stamat\documents\visual studio 2013\Projects\SOC-Generator\SOC-Generator\obj\Debug\SOC_Generator.Properties.Resources.resources
+c:\users\stamat\documents\visual studio 2013\Projects\SOC-Generator\SOC-Generator\obj\Debug\SOC-Generator.csproj.GenerateResource.Cache
+c:\users\stamat\documents\visual studio 2013\Projects\SOC-Generator\SOC-Generator\obj\Debug\SOC-Generator.exe
+c:\users\stamat\documents\visual studio 2013\Projects\SOC-Generator\SOC-Generator\obj\Debug\SOC-Generator.pdb
