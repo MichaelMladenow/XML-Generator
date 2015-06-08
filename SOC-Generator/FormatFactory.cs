@@ -17,7 +17,6 @@
             RowGenerator generator = new RowGenerator(xmlData);
             generator.Generate();
             return xmlRowsToStringArray(generator.GeneratedOutput);
-
         }
 
         public static string GenerateImageRows(string[] input)

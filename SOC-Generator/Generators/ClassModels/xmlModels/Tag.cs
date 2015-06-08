@@ -12,11 +12,17 @@
         private const string AttributeRepresentFormat = " {0}=\"{1}\"";
         private string tagName;
         private string content;
-        private Dictionary<string, string> attributes;
+        private Dictionary<string, string> attributes = new Dictionary<string, string>();
 
-        public Tag(string tagXMLName, Dictionary<string, string> tagAttributes)
+        public Tag(string tagXMLName, Dictionary<string, string> tagAttributes, string contentData = "")
         {
-            throw new NotImplementedException();
+            this.TagName = tagXMLName;
+            this.Content = contentData;
+            foreach (KeyValuePair<string, string> attribute in tagAttributes)
+            {
+
+                this.Attributes[attribute.Key.Trim()] = attribute.Value.Trim();
+            }
         }
 
         public string TagName
@@ -68,7 +74,10 @@
             {
                 foreach (KeyValuePair<string, string> entry in this.Attributes)
                 {
-                    attributesLine.AppendFormat(AttributeRepresentFormat, entry.Key, entry.Value);
+                    if (entry.Key.Trim().ToLower() != "content")
+                    {
+                        attributesLine.AppendFormat(AttributeRepresentFormat, entry.Key, entry.Value);
+                    }
                 }
             }
 

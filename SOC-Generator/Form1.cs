@@ -23,6 +23,7 @@
         public Generator()
         {
             InitializeComponent();
+            lstPresets.SelectedIndex = 0;
         }
 
         private void buttonGenerate_Click(object sender, EventArgs e)
@@ -71,16 +72,12 @@
                                              StringSplitOptions.None)), Delimiter);
                         }
 
-                        foreach (var rowDictData in rawData)
+                        string[] rowsOutput = FormatFactory.GenerateRows(rawData);
+
+                        foreach (var stringedRow in rowsOutput)
                         {
-
-                            txtDebug.Text += "*********" + Environment.NewLine;
-                            foreach (KeyValuePair<string, string> kvp in rowDictData)
-                            {
-                                txtDebug.Text += string.Format("Name = {0}, Value = {1}" + Environment.NewLine, kvp.Key, kvp.Value);
-                            }
+                            txtDebug.Text += stringedRow + Environment.NewLine;
                         }
-
 
                         // TODO: Prepare data for the rowGenerator constructor
                         // RowGenerator rowGenerator = new RowGenerator();
@@ -96,11 +93,8 @@
             }
 
             // TODO: Prepare output
-
-
             // TODO: Write stream to file
             // this.writeStream.Close();
-
             // TODO: Notify for completion of operation
         }
 

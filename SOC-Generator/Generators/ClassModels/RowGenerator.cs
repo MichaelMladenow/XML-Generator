@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using SOC_Generator.Generators.ClassModels.xmlModels;
 
     public class RowGenerator : GeneratorBase
@@ -44,11 +45,9 @@
 
         public override void Generate()
         {
-            foreach (var item in this.rowGenerationData)
+            foreach (var attribs in this.rowGenerationData)
             {
-                Row tempRow = new Row(rowCount + 1, item);
-
-                // TODO: ADD THE ROW IN THE INPUT DATA
+                Row tempRow = new Row(rowCount + 1, attribs);
                 this.GeneratedOutput.Add(tempRow);
                 this.rowCount++;
             }

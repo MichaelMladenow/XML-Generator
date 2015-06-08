@@ -76,7 +76,6 @@
     <Compile Include="Generators\ClassModels\xmlModels\Row.cs" />
     <Compile Include="Generators\ClassModels\xmlModels\Tag.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Streamreader.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

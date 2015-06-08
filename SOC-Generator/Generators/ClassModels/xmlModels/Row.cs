@@ -23,6 +23,7 @@
             : base(RowTagName, attributes)
         {
             this.Attributes["label"] = string.Format(RowLabelFormat, index);
+            this.Attributes.OrderBy(entry => entry.Key == "label");
         }
     }
 }
