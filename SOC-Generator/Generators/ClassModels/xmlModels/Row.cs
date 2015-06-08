@@ -9,7 +9,7 @@
     /// <summary>
     /// Class representing a question row in XML format    
     /// </summary>
-    class Row : Tag
+    public class Row : Tag
     {
         private const string RowTagName = "row";
         private const string RowLabelFormat = "r{0}";

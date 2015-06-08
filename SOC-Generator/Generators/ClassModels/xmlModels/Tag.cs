@@ -6,7 +6,7 @@
     using System.Text;
     using System.Threading.Tasks;
 
-    abstract class Tag
+    public abstract class Tag
     {
         private const string TagRepresentFormat = "<{0} {1}>{2}</{0}>";
         private const string AttributeRepresentFormat = " {0}=\"{1}\"";

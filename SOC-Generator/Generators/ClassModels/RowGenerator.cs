@@ -15,6 +15,19 @@
             this.rowGenerationData = rowsData;
         }
 
+        public List<Row> GeneratedOutput
+        {
+            get
+            {
+                return this.generatedOutput;
+            }
+
+            private set
+            {
+                this.generatedOutput = value;
+            }
+        }
+
         public List<Dictionary<string, string>> InputData
         {
             get
@@ -29,14 +42,14 @@
             }
         }
 
-        public override void Generate(List<Dictionary<string, string>> tagData)
+        public override void Generate()
         {
-            foreach (var item in tagData)
+            foreach (var item in this.rowGenerationData)
             {
                 Row tempRow = new Row(rowCount + 1, item);
 
                 // TODO: ADD THE ROW IN THE INPUT DATA
-                this.generatedOutput.Add(tempRow);
+                this.GeneratedOutput.Add(tempRow);
                 this.rowCount++;
             }
         }

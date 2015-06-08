@@ -9,6 +9,6 @@
 
     public abstract class GeneratorBase
     {
-        public abstract void Generate(List<Dictionary<string, string>> generationData);
+        public abstract void Generate();
     }
 }

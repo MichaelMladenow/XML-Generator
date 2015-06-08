@@ -25,30 +25,6 @@
             InitializeComponent();
         }
 
-        /// <summary>
-        /// Parses attributes from string array[] for xml conversion
-        /// </summary>
-        /// <param name="textData">String array, holding each data line</param>
-        /// <returns>Returns a collection of string kv pairs, or empty collection
-        /// if nothing was parsed. Each element from the list represents the data
-        /// for one xml tag element.</returns>
-        private List<Dictionary<string, string>> parseXmlAttributes(List<string> textData)
-        {
-            string[] attributeNames = textData[0].Split(Delimiter);
-            List<Dictionary<string, string>> outputData = new List<Dictionary<string, string>>();
-            foreach (var dataRow in textData)
-            {
-                Dictionary<string, string> currentTagAttributes = new Dictionary<string, string>();
-                string[] currentTagData = dataRow.Split(Delimiter);
-                for (int i = 0; i < currentTagData.Length; i++)
-                {
-                    currentTagAttributes[attributeNames[i]] = currentTagData[i];
-                }
-                outputData.Add(currentTagAttributes);
-            }
-            return outputData;
-        }
-
         private void buttonGenerate_Click(object sender, EventArgs e)
         {
             // Make sure something is selected from the comboBox
@@ -84,15 +60,15 @@
                         {
                             using (reader = new StreamReader(readStream))
                             {
-                                rawData = parseXmlAttributes(FormatFactory.streamReaderToList(reader));
+                                rawData = FormatFactory.parseXmlAttributes(FormatFactory.streamReaderToList(reader), Delimiter);
                             }
                         }
                         else
                         {
                             // TODO: OGM
-                            rawData = parseXmlAttributes(new List<string>(
+                            rawData = FormatFactory.parseXmlAttributes(new List<string>(
                                              txtInput.Text.Split(new string[] { "\r\n", "\n" },
-                                             StringSplitOptions.None)));
+                                             StringSplitOptions.None)), Delimiter);
                         }
 
                         foreach (var rowDictData in rawData)
