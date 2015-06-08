@@ -15,9 +15,10 @@
     public partial class Generator : Form
     {
         private const char Delimiter = '\t';
-        private SaveFileDialog outputPathDialog = new SaveFileDialog();
+        private OpenFileDialog outputPathDialog = new OpenFileDialog();
         private Stream readStream;
         private bool fileSelected = false;
+        private StreamReader reader;
 
         public Generator()
         {
@@ -31,18 +32,19 @@
         /// <returns>Returns a collection of string kv pairs, or empty collection
         /// if nothing was parsed. Each element from the list represents the data
         /// for one xml tag element.</returns>
-        private List<Dictionary<string, string>> parseXmlAttributes(string[] textData)
+        private List<Dictionary<string, string>> parseXmlAttributes(List<string> textData)
         {
             string[] attributeNames = textData[0].Split(Delimiter);
             List<Dictionary<string, string>> outputData = new List<Dictionary<string, string>>();
             foreach (var dataRow in textData)
             {
-                string[] currentTagData = dataRow.Split(Delimiter);
                 Dictionary<string, string> currentTagAttributes = new Dictionary<string, string>();
+                string[] currentTagData = dataRow.Split(Delimiter);
                 for (int i = 0; i < currentTagData.Length; i++)
                 {
                     currentTagAttributes[attributeNames[i]] = currentTagData[i];
                 }
+                outputData.Add(currentTagAttributes);
             }
             return outputData;
         }
@@ -58,6 +60,8 @@
             }
             else
             {
+
+                MessageBox.Show(fileSelected ? "File selected" : "Using input box");
                 switch (lstPresets.SelectedItem.ToString())
                 {
                     /* Possible values for the comboBox:
@@ -69,12 +73,39 @@
                      * Hotspot row
                      * Hotspot Toggle rows
                      */
+
                     case "Rows":
                         // TODO: Generate the rows finally :D
                         txtDebug.Text += "Preset = row" + Environment.NewLine;
 
                         // TODO: fix populating this, either from file or the input tb
                         List<Dictionary<string, string>> rawData = new List<Dictionary<string, string>>();
+                        if (fileSelected)
+                        {
+                            using (reader = new StreamReader(readStream))
+                            {
+                                rawData = parseXmlAttributes(FormatFactory.streamReaderToList(reader));
+                            }
+                        }
+                        else
+                        {
+                            // TODO: OGM
+                            rawData = parseXmlAttributes(new List<string>(
+                                             txtInput.Text.Split(new string[] { "\r\n", "\n" },
+                                             StringSplitOptions.None)));
+                        }
+
+                        foreach (var rowDictData in rawData)
+                        {
+
+                            txtDebug.Text += "*********" + Environment.NewLine;
+                            foreach (KeyValuePair<string, string> kvp in rowDictData)
+                            {
+                                txtDebug.Text += string.Format("Name = {0}, Value = {1}" + Environment.NewLine, kvp.Key, kvp.Value);
+                            }
+                        }
+
+
                         // TODO: Prepare data for the rowGenerator constructor
                         // RowGenerator rowGenerator = new RowGenerator();
                         break;
@@ -89,7 +120,6 @@
             }
 
             // TODO: Prepare output
-            // TODO: check what we're generating :D
 
 
             // TODO: Write stream to file
